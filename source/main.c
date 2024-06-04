@@ -42,11 +42,11 @@ static int32_t audio = 0;
 app_config_t gcm_config = {
     .app_name = "CHTMGR",
     .app_ver = {0},
-    .music = 1,
+    .music = 0,
     .doSort = 1,
-    .doAni = 1,
-    .update = 1,
-    .overwrite = 1,
+    .doAni = 0,
+    .update = 0,
+    .overwrite = 0,
     .user_id = 0,
 };
 
@@ -461,6 +461,7 @@ s32 main(s32 argc, const char* argv[])
 	// Unpack application data on first run
 	if (strncmp(gcm_config.app_ver, CHEATSMGR_VERSION, sizeof(gcm_config.app_ver)) != 0)
 	{
+#ifndef DEBUG_ENABLE_LOG
 		if (gcm_config.overwrite && extract_zip(CHEATSMGR_APP_PATH "misc/" LOCAL_TEMP_ZIP, GOLDHEN_PATH "/"))
 		{
 			char *cheat_ver = readTextFile(GOLDCHEATS_DATA_PATH "misc/cheat_ver.txt", NULL);
@@ -469,6 +470,7 @@ s32 main(s32 argc, const char* argv[])
 			free(cheat_ver);
 			free(patch_ver);
 		}
+#endif
 
 		strncpy(gcm_config.app_ver, CHEATSMGR_VERSION, sizeof(gcm_config.app_ver));
 		save_app_settings(&gcm_config);

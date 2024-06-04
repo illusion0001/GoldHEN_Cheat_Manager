@@ -6,7 +6,7 @@
 #define CHEATSMGR_LOCAL_CACHE       CHEATSMGR_PATH "temp/"
 #define CHEATSMGR_UPDATE_URL        "https://api.github.com/repos/bucanero/PS4CheatsManager/releases/latest"
 
-#ifdef DEBUG_ENABLE_LOG
+#ifndef DEBUG_ENABLE_LOG
 #define CHEATSMGR_APP_PATH          "/data/CheatsManager/debug/"
 #define CHEATSMGR_SANDBOX_PATH      "/mnt/sandbox/LOAD00044_000%s/"
 #else
