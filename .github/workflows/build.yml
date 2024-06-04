@@ -161,11 +161,6 @@ jobs:
         cp ${curl_path}/orbis/lib/libcurl.a "${OO_PS4_TOOLCHAIN}/lib"
         cp -R ${curl_path}/include/curl "${OO_PS4_TOOLCHAIN}/include/"
 
-    - name: Add current cheats and patches data into Package
-      run: |
-        curl -sL https://github.com/illusion0001/PS4-PS5-Game-Patch/releases/latest/download/patch1.zip | busybox unzip - -q
-        make createzip
-
     - name: Build Cheats Manager App Package
       run: |
         make
@@ -183,3 +178,8 @@ jobs:
       with:
         name: appdata-build_${{ env.sha_name }}
         path: assets/misc/appdata.zip
+
+    - name: Create Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh release create "$(date +%s)" "${{ github.workspace }}/cheatsmgr-build_${{ env.sha_name }}.pkg" --target "${{ GITHUB.SHA }}" -t "$(date +%s)"

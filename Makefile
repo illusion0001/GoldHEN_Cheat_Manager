@@ -10,7 +10,7 @@ LIBS        := -lc -lkernel -lSceAudioOut -lSceUserService -lScePigletv2VSH -lSc
                -lSceNetCtl -lSceImeDialog -lSDL2 -lcjson -ldbglogger -lz -ljbc -lmxml -lcurl -lpolarssl -lSQLite
 
 # Additional compile flags.
-EXTRAFLAGS  := -fcolor-diagnostics -Wall -D__PS4__
+EXTRAFLAGS  := -fcolor-diagnostics -Wall -D__PS4__ -DDEBUG_ENABLE_LOG
 
 ifeq ($(DEBUGLOG),1)
     EXTRAFLAGS += -DDEBUG_ENABLE_LOG
