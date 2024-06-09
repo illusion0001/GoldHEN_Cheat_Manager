@@ -170,7 +170,9 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: cheatsmgr-build_${{ env.sha_name }}
-        path: cheatsmgr-build_${{ env.sha_name }}.pkg
+        path: |
+          cheatsmgr-build_${{ env.sha_name }}.pkg
+          build/x64/Debug/source.elf
         if-no-files-found: error
 
     - name: Push appdata artifact
@@ -182,4 +184,4 @@ jobs:
     - name: Create Release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh release create "$(date +%s)" "${{ github.workspace }}/cheatsmgr-build_${{ env.sha_name }}.pkg" --target "${{ GITHUB.SHA }}" -t "$(date +%s)"
+      run: gh release create "$(date +%s)" "cheatsmgr-build_${{ env.sha_name }}.pkg" "build/x64/Debug/source.elf" --target "${{ GITHUB.SHA }}" -t "$(date +%s)"
