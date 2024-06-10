@@ -22,7 +22,7 @@ jobs:
     - name: Set env vars
       run: |
         echo "llvm_ver=12.0" >> $GITHUB_ENV
-        echo "sha_name=$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
+        echo "sha_name=$(date '+%Y-%m-%d-%H-%M-%S')-$(echo ${GITHUB_SHA} | cut -c1-8)" >> $GITHUB_ENV
         echo "sdl_path=SDL-PS4" >> $GITHUB_ENV
         echo "curl_path=oosdk_libraries/curl-7.64.1" >> $GITHUB_ENV
         echo "OO_PS4_TOOLCHAIN=$GITHUB_WORKSPACE/OpenOrbis/PS4Toolchain" >> $GITHUB_ENV
